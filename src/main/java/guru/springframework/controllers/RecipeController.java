@@ -30,25 +30,25 @@ public class RecipeController {
 
     @GetMapping("recipe/new")
     public String newRecipe(Model model){
-        model.addAttribute("recipe", new RecipeCommand());
+        model.addAttribute("recipe", new RecipeCommand());//sends new RecipeCommand to be populated by the form.//thensenditTo-"recipe/recipeform"
 
         return "recipe/recipeform";
     }
 
     @GetMapping("recipe/{id}/update")
     public String updateRecipe(@PathVariable String id, Model model){
-        model.addAttribute("recipe", recipeService.findCommandById(Long.valueOf(id)));
+        model.addAttribute("recipe", recipeService.findCommandById(Long.valueOf(id)));//sends the RecipeCommand ofTheRecipe wewanttoUpdate.////thensenditTo-"recipe/recipeform"
         return  "recipe/recipeform";
     }
 
-    @PostMapping("recipe")
+    @PostMapping("recipe")//you mean:- /saveorupdate// spring will know if id populated UPDATE else CREATE new Recipe.
     public String saveOrUpdate(@ModelAttribute RecipeCommand command){
         RecipeCommand savedCommand = recipeService.saveRecipeCommand(command);
 
         return "redirect:/recipe/" + savedCommand.getId() + "/show";
     }
 
-    @GetMapping("recipe/{id}/delete")
+    @GetMapping("recipe/{id}/delete")//usingGETforDeletionpurpose b/cwecantuseDELETEmethodWithinHTTPunlessyou're using javascript
     public String deleteById(@PathVariable String id){
 
         log.debug("Deleting id: " + id);

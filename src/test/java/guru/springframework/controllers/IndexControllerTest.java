@@ -22,10 +22,13 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.view;
 
 public class IndexControllerTest {
+
     @Mock
     RecipeService recipeService;
+
     @Mock
     Model model;
+
     IndexController controller;
 
     @Before
@@ -45,12 +48,15 @@ public class IndexControllerTest {
     }
 
     @Test
-    public void getIndexPage() throws Exception{
+    public void getIndexPage() throws Exception {
+
         //given
         Set<Recipe> recipes = new HashSet<>();
         recipes.add(new Recipe());
+
         Recipe recipe = new Recipe();
         recipe.setId(1L);
+
         recipes.add(recipe);
 
         when(recipeService.getRecipes()).thenReturn(recipes);
@@ -60,6 +66,7 @@ public class IndexControllerTest {
         //when
         String viewName = controller.getIndexPage(model);
 
+
         //then
         assertEquals("index", viewName);
         verify(recipeService, times(1)).getRecipes();
@@ -67,4 +74,5 @@ public class IndexControllerTest {
         Set<Recipe> setInController = argumentCaptor.getValue();
         assertEquals(2, setInController.size());
     }
+
 }

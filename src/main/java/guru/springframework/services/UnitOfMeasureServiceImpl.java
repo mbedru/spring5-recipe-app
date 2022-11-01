@@ -25,10 +25,19 @@ public class UnitOfMeasureServiceImpl implements UnitOfMeasureService {
 
     @Override
     public Set<UnitOfMeasureCommand> listAllUoms() {
-
-        return StreamSupport.stream(unitOfMeasureRepository.findAll()
+        //the StreamSupport ... wekeba is to change Iterable(findAll()-value) TO Stream.
+        return StreamSupport.stream(unitOfMeasureRepository.findAll()//the parallel=false//meansIts Sequential
                         .spliterator(), false)
                 .map(unitOfMeasureToUnitOfMeasureCommand::convert)
                 .collect(Collectors.toSet());
     }
 }
+
+////////////////////////////////************************///////////////////////////////////////////
+/*
+1. Parallel Stream :- use only ONE Thread/Core => returns the Collection with preserved
+                    - NotMuchSpeed b/c of only one thread
+
+2. Sequential Stream :- uses many Threads/Cores if available
+                      - very FAST b/c of many threads
+                      - works/depends if both sender/receiver support multi-Threading.*/

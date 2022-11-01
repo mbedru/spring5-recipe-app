@@ -29,7 +29,7 @@ public class Recipe {
     private Set<Ingredient> ingredients = new HashSet<>();
 
     @Lob
-    private Byte[] image;
+    private Byte[] image;//hybernateRecommendation=Boxed,Byte //some people argue to use the primitive b/c primitives can be Null.
 
     @Enumerated(value = EnumType.STRING)
     private Difficulty difficulty;

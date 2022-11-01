@@ -10,10 +10,10 @@ import org.springframework.stereotype.Component;
 @Component
 public class UnitOfMeasureCommandToUnitOfMeasure implements Converter<UnitOfMeasureCommand, UnitOfMeasure>{
 
-    @Synchronized
+    @Synchronized//adding lombok.Synchronized... b/c spring doesn't guarantee threadSafety;
     @Nullable
     @Override
-    public UnitOfMeasure convert(UnitOfMeasureCommand source) {
+    public UnitOfMeasure convert(@Nullable UnitOfMeasureCommand source) {//@Nullable addedBy-Me
         if (source == null) {
             return null;
         }

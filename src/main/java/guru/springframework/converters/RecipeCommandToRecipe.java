@@ -21,10 +21,10 @@ public class RecipeCommandToRecipe implements Converter<RecipeCommand, Recipe> {
         this.notesConverter = notesConverter;
     }
 
-    @Synchronized
+    @Synchronized// lombok.Synchronized b/c spring doesn't guarantee threadSafety;`
     @Nullable
     @Override
-    public Recipe convert(RecipeCommand source) {
+    public Recipe convert(@Nullable RecipeCommand source) {
         if (source == null) {
             return null;
         }

@@ -19,12 +19,14 @@
 <body>
 <!--/*@thymesVar id="recipe" type="guru.springframework.domain.Recipe"*/-->
 <div class="container-fluid" style="margin-top: 20px">
-  <div class="row">
+  <div class="row"><!---->
     <div class="col-md-6 col-md-offset-3">
-      <div class="pannel-group">
+      <div class="panel-group">
         <div class="panel panel-primary">
+<!-- ****************************PANEL-1********************************-->
+          <!--Heading-1 (description and imageChangeButton )-->
           <div class="panel-heading">
-            <div class="row">
+            <div class="row"><!---->
               <div class="col-md-3">
                 <h1 class="panel-title" th:text="${recipe.description}">Recipe Description Here!</h1>
               </div>
@@ -35,8 +37,9 @@
               </div>
             </div>
           </div>
+          <!--Body-1 categories && Image && Other -->
           <div class="panel-body">
-            <div class="row">
+            <div class="row"><!---->
               <div class="col-md-3">
                 <h5>Categories:</h5>
               </div>
@@ -55,7 +58,8 @@
                      width="200" height="200">
               </div>
             </div>
-            <div class="row">
+            <!---->
+            <div class="row"><!---->
               <div class="col-md-3">
                 <h5>Prep Time:</h5>
               </div>
@@ -69,7 +73,7 @@
                 <p th:text="${recipe.difficulty}">Easy</p>
               </div>
             </div>
-            <div class="row">
+            <div class="row"><!---->
               <div class="col-md-3">
                 <h5>Cooktime:</h5>
               </div>
@@ -83,7 +87,7 @@
                 <p th:text="${recipe.servings}">4</p>
               </div>
             </div>
-            <div class="row">
+            <div class="row"><!---->
               <div class="col-md-3">
                 <h5>Source:</h5>
               </div>
@@ -99,9 +103,11 @@
             </div>
           </div>
         </div>
+<!-- *****************************PANEL-2*******************************-->
+        <!--Heading-2 (text:"ingredients" and viewIngredientsButton )-->
         <div class="panel panel-primary">
           <div class="panel-heading">
-            <div class="row">
+            <div class="row"><!---->
               <div class="col-md-11 ">
                 <h1 class="panel-title">Ingredients</h1>
               </div>
@@ -111,8 +117,9 @@
               </div>
             </div>
           </div>
+          <!--Body-2 List Ingredients(and their detail) -->
           <div class="panel-body">
-            <div class="row">
+            <div class="row"><!---->
               <div class="col-md-12">
                 <ul>
                   <li th:remove="all">1 Cup of milk</li>
@@ -127,12 +134,15 @@
             </div>
           </div>
         </div>
+        <!-- *****************************PANEL-3*******************************-->
+        <!--Heading-3 (text:"directions")-->
         <div class="panel panel-primary">
           <div class="panel-heading">
             <h1 class="panel-title">Directions</h1>
           </div>
+          <!--Body-3 directions/aserar -->
           <div class="panel-body">
-            <div class="row">
+            <div class="row"><!---->
               <div class="col-md-12">
                 <p th:text="${recipe.directions}">Lorem ipsum dolor sit amet, consectetuer adipiscing
                   elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus
@@ -151,12 +161,15 @@
             </div>
           </div>
         </div>
+        <!-- *****************************PANEL-4*******************************-->
+        <!--Heading-4 (text:"notes")-->
         <div class="panel panel-primary">
           <div class="panel-heading">
             <h1 class="panel-title">Notes</h1>
           </div>
+          <!--Body-4 note -->
           <div class="panel-body">
-            <div class="row">
+            <div class="row"><!---->
               <div class="col-md-12">
                 <p th:text="${recipe.notes.recipeNotes}">Lorem ipsum dolor sit amet, consectetuer
                   adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque

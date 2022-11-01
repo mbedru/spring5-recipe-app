@@ -13,7 +13,7 @@ public class NotesCommandToNotes implements Converter<NotesCommand, Notes> {
     @Synchronized
     @Nullable
     @Override
-    public Notes convert(NotesCommand source) {
+    public Notes convert(@Nullable NotesCommand source) {
         if(source == null) {
             return null;
         }

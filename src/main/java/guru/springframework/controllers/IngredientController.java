@@ -47,7 +47,7 @@ public class IngredientController {
     }
 
     @GetMapping("recipe/{recipeId}/ingredient/new")
-    public String newRecipe(@PathVariable String recipeId, Model model){
+    public String newRecipeIngredient(@PathVariable String recipeId, Model model){//was newRecipe by accident
 
         //make sure we have a good id value
         RecipeCommand recipeCommand = recipeService.findCommandById(Long.valueOf(recipeId));
@@ -58,7 +58,7 @@ public class IngredientController {
         ingredientCommand.setRecipeId(Long.valueOf(recipeId));
         model.addAttribute("ingredient", ingredientCommand);
 
-        //init uom
+        //init uom //for our drop-down
         ingredientCommand.setUom(new UnitOfMeasureCommand());
 
         model.addAttribute("uomList",  unitOfMeasureService.listAllUoms());

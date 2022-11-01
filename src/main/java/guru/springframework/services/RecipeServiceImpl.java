@@ -49,13 +49,13 @@ public class RecipeServiceImpl implements RecipeService {
     }
 
     @Override
-    @Transactional
+    @Transactional// b/c weGoThroughTheCONVERTERS outsideOf SPRING-CONTEXT
     public RecipeCommand findCommandById(Long l) {
         return recipeToRecipeCommand.convert(findById(l));
     }
 
     @Override
-    @Transactional
+    @Transactional// b/c weGoThroughTheCONVERTERS outsideOf SPRING-CONTEXT
     public RecipeCommand saveRecipeCommand(RecipeCommand command) {
         Recipe detachedRecipe = recipeCommandToRecipe.convert(command);
 

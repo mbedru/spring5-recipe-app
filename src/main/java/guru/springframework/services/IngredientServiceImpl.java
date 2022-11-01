@@ -45,7 +45,8 @@ public class IngredientServiceImpl implements IngredientService {
 
         Optional<IngredientCommand> ingredientCommandOptional = recipe.getIngredients().stream()
                 .filter(ingredient -> ingredient.getId().equals(ingredientId))
-                .map( ingredient -> ingredientToIngredientCommand.convert(ingredient)).findFirst();
+                .map( ingredient -> ingredientToIngredientCommand.convert(ingredient))
+                .findFirst();
 
         if(!ingredientCommandOptional.isPresent()){
             //todo impl error handling
@@ -57,17 +58,16 @@ public class IngredientServiceImpl implements IngredientService {
 
     @Override
     @Transactional
-    public IngredientCommand saveIngredientCommand(IngredientCommand command) {
+    public IngredientCommand saveIngredientCommand(IngredientCommand command) {//save OR update
         Optional<Recipe> recipeOptional = recipeRepository.findById(command.getRecipeId());
 
         if(!recipeOptional.isPresent()){
-
             //todo toss error if not found!
             log.error("Recipe not found for id: " + command.getRecipeId());
-            return new IngredientCommand();
+            return new IngredientCommand();//means all its values are null SAME-AS returning null
         } else {
             Recipe recipe = recipeOptional.get();
-
+//check if the ingredient Exist  => if yes update it
             Optional<Ingredient> ingredientOptional = recipe
                     .getIngredients()
                     .stream()
@@ -82,7 +82,7 @@ public class IngredientServiceImpl implements IngredientService {
                         .findById(command.getUom().getId())
                         .orElseThrow(() -> new RuntimeException("UOM NOT FOUND"))); //todo address this
             } else {
-                //add new Ingredient
+//if the ingredient Not Exist//add new Ingredient
                 Ingredient ingredient = ingredientCommandToIngredient.convert(command);
                 ingredient.setRecipe(recipe);
                 recipe.addIngredient(ingredient);
@@ -130,7 +130,7 @@ public class IngredientServiceImpl implements IngredientService {
             if(ingredientOptional.isPresent()){
                 log.debug("found Ingredient");
                 Ingredient ingredientToDelete = ingredientOptional.get();
-                ingredientToDelete.setRecipe(null);
+                ingredientToDelete.setRecipe(null);//why? isnt it to be deleted already?
                 recipe.getIngredients().remove(ingredientOptional.get());
                 recipeRepository.save(recipe);
             }

@@ -23,15 +23,15 @@ public class RecipeToRecipeCommand implements Converter<Recipe, RecipeCommand>{
         this.notesConverter = notesConverter;
     }
 
-    @Synchronized
+    @Synchronized// lombok.Synchronized b/c spring doesn't guarantee threadSafety; thenWeCanRunItOnMultiThreadedEnvironment.
     @Nullable
     @Override
-    public RecipeCommand convert(Recipe source) {
+    public RecipeCommand convert(@Nullable Recipe source) {
         if (source == null) {
             return null;
         }
 
-        final RecipeCommand command = new RecipeCommand();
+        final RecipeCommand command = new RecipeCommand();//final(makesthemImmutable)forSecurity.
         command.setId(source.getId());
         command.setCookTime(source.getCookTime());
         command.setPrepTime(source.getPrepTime());
